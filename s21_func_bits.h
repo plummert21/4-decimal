@@ -1,6 +1,8 @@
 #ifndef S21_FUNC_BITS
 #define S21_FUNC_BITS
 
+#include <stdio.h>
+
 #include "s21_decimal.h"
 
 int __get_bit(int num, int bit);
