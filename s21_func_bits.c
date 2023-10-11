@@ -12,14 +12,10 @@ void __set_bit_decimal(s21_decimal *num, int bit) {
   __set_bit(&num->bits[bit / 32], bit % 32);
 }
 
-// void __set_bit_decimal(s21_decimal *num, int bit) {
-//   num->bits[bit / 32] = __set_bit(num->bits[bit / 32], bit % 32);
-// }
-
-int __reset_bit(int num, int bit) { return num & (~(1 << bit)); }
+void __reset_bit(int *num, int bit) { *num &= (~(1 << bit)); }
 
 void __reset_bit_decimal(s21_decimal *num, int bit) {
-  num->bits[bit / 32] = __reset_bit(num->bits[bit / 32], bit % 32);
+  __reset_bit(&num->bits[bit / 32], bit % 32);
 }
 
 void __print_bit(int num) {

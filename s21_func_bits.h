@@ -14,8 +14,7 @@ int __get_bit_decimal(s21_decimal *num, int bit);
 void __set_bit(int *num, int bit);
 void __set_bit_decimal(s21_decimal *num, int bit);
 
-// ToDo - int to void
-int __reset_bit(int num, int bit);
+void __reset_bit(int *num, int bit);
 void __reset_bit_decimal(s21_decimal *num, int bit);
 
 void __print_bit(int num);
