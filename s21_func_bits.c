@@ -6,11 +6,15 @@ int __get_bit_decimal(s21_decimal *num, int bit) {
   return __get_bit(num->bits[bit / 32], bit);
 }
 
-int __set_bit(int num, int bit) { return num | (1 << bit); }
+void __set_bit(int *num, int bit) { *num |= (1 << bit); }
 
 void __set_bit_decimal(s21_decimal *num, int bit) {
-  num->bits[bit / 32] = __set_bit(num->bits[bit / 32], bit % 32);
+  __set_bit(&num->bits[bit / 32], bit % 32);
 }
+
+// void __set_bit_decimal(s21_decimal *num, int bit) {
+//   num->bits[bit / 32] = __set_bit(num->bits[bit / 32], bit % 32);
+// }
 
 int __reset_bit(int num, int bit) { return num & (~(1 << bit)); }
 
