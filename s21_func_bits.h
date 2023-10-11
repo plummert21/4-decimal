@@ -23,8 +23,7 @@ void __print_bit(int num);
 void __print_bit_decimal(s21_decimal *num);
 void __print_bit_long_decimal(s21_long_decimal *num);
 
-// ToDo - __get_exp
-// int __get_exp(int )
+int __get_exp(int rank);
 
 void __copy_decimal_to_long_decimal(s21_decimal *decimal,
                                     s21_long_decimal *long_decimal);

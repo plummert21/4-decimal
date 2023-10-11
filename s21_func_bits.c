@@ -52,6 +52,11 @@ void __print_bit_long_decimal(s21_long_decimal *num) {
   printf("\n");
 }
 
+int __get_exp(int rank) {
+  __reset_bit(&rank, 31);
+  return (rank >> 16);
+}
+
 void __copy_decimal_to_long_decimal(s21_decimal *decimal,
                                     s21_long_decimal *long_decimal) {
   long_decimal->bits[6] = decimal->bits[3];
