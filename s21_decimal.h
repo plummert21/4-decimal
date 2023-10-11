@@ -9,8 +9,9 @@ typedef struct {
   unsigned int bits[7];
 } s21_long_decimal;
 
-#define len_str_max 35
+#define len_str_max 70
 #define sign_bit_decimal 127
+#define sign_bit_long_decimal 223
 
 // Арифметические операторы
 int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);
