@@ -4,6 +4,7 @@ NAME_PROJECT = s21_decimal
 # FILE_OUT_TESTS = tests.out
 
 FLAG = -Wall -Werror -Wextra -std=c11 -pedantic
+
 GCC = gcc 
 # LIBM = -lm
 # LIBS = -lcheck $(LIBM) -lsubunit -lgcov

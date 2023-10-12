@@ -25,10 +25,6 @@ void __print_bit_long_decimal(s21_long_decimal *num);
 
 int __get_exp(int rank);
 
-int __compare_sign_decimal(s21_decimal *value_1, s21_decimal *value_2);
-int __compare_exp_decimal(s21_decimal *value_1, s21_decimal *value_2);
-int __compare_module_decimal(s21_decimal *value_1, s21_decimal *value_2);
-
 void __copy_decimal_to_long_decimal(s21_decimal *decimal,
                                     s21_long_decimal *long_decimal);
 
