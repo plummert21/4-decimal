@@ -34,7 +34,17 @@ int __compare_exp_decimal(s21_decimal *value_1, s21_decimal *value_2) {
 
 int __compare_module_decimal(s21_decimal *value_1, s21_decimal *value_2) {
   // return 0 - false, 1 - true
-  return 0;
+  int result = 0;
+  int i = 96;
+  int bit_value_1 = 0;
+  int bit_value_2 = 0;
+  do {
+    i--;
+    bit_value_1 = __get_bit_decimal(value_1, i);
+    bit_value_2 = __get_bit_decimal(value_2, i);
+  } while ((bit_value_1 != bit_value_2) || (i == 0));
+  result = bit_value_1 != bit_value_2 ? 0 : 1;
+  return result;
 }
 
 int __compare_long_decimal(s21_long_decimal *value_1,
@@ -75,5 +85,15 @@ int __compare_exp_long_decimal(s21_long_decimal *value_1,
 int __compare_module_long_decimal(s21_long_decimal *value_1,
                                   s21_long_decimal *value_2) {
   // return 0 - false, 1 - true
-  return 0;
+  int result = 0;
+  int i = 192;
+  int bit_value_1 = 0;
+  int bit_value_2 = 0;
+  do {
+    i--;
+    bit_value_1 = __get_bit_long_decimal(value_1, i);
+    bit_value_2 = __get_bit_long_decimal(value_2, i);
+  } while ((bit_value_1 != bit_value_2) || (i == 0));
+  result = bit_value_1 != bit_value_2 ? 0 : 1;
+  return result;
 }
