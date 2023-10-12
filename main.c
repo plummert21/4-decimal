@@ -36,7 +36,7 @@ int main() {
   s21_dec_to_str(&num2, str4);
   s21_print_str(str3);
   s21_print_str(str4);
-  int compare = __compare_sign_decimal(&num1, &num2);
+  int compare = __compare_decimal(&num1, &num2);
   printf("%d\n", compare);
   return 0;
 }
