@@ -1,3 +1,4 @@
+#include "s21_compare.h"
 #include "s21_decimal.h"
 #include "s21_func_bits.h"
 
