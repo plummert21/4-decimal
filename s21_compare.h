@@ -1,5 +1,5 @@
-#ifndef S21_FUNC_BITS
-#define S21_FUNC_BITS
+#ifndef S21_COMPARE
+#define S21_COMPARE
 
 #include "s21_decimal.h"
 #include "s21_func_bits.h"

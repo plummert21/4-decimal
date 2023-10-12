@@ -3,7 +3,7 @@
 int __compare_sign_decimal(s21_decimal *value_1, s21_decimal *value_2) {
   // return 0 - false, 4 - true
   int result = 0;
-  int sign_1 = __get_bit_decimal(value_1, sign_bit_decimal);
+  int sign_value_1 = __get_bit_decimal(value_1, sign_bit_decimal);
   int sign_value_2 = __get_bit_decimal(value_2, sign_bit_decimal);
   if (sign_value_1 == sign_value_2) {
     result = 4;
