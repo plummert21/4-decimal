@@ -64,3 +64,25 @@ void __copy_decimal_to_long_decimal(s21_decimal *decimal,
     long_decimal->bits[i] = decimal->bits[i];
   }
 }
+
+void __pre_compare_long_decimal(s21_decimal *value_1, s21_decimal *value_2,
+                                s21_long_decimal *long_value_1,
+                                s21_long_decimal *long_value_2) {
+  int exp_value_1 = __get_exp(value_1->bits[rank_exp_decimal]);
+  int exp_value_2 = __get_exp(value_2->bits[rank_exp_decimal]);
+  __copy_decimal_to_long_decimal(value_1, long_value_1);
+  __copy_decimal_to_long_decimal(value_2, long_value_2);
+  int diff_exp = exp_value_1 - exp_value_2;
+  if (diff_exp < 0) {
+    // Нормализуем long_value_1
+    __normalize_long_decimal(long_value_1, diff_exp);
+  } else {
+    // Нормализуем long_value_2
+    __normalize_long_decimal(long_value_2, diff_exp);
+  }
+}
+
+void __normalize_long_decimal(s21_long_decimal *long_value, int diff) {
+  // ToDo
+  // Нормализация
+}

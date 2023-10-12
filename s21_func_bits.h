@@ -28,4 +28,10 @@ int __get_exp(int rank);
 void __copy_decimal_to_long_decimal(s21_decimal *decimal,
                                     s21_long_decimal *long_decimal);
 
+void __pre_compare_long_decimal(s21_decimal *value_1, s21_decimal *value_2,
+                                s21_long_decimal *long_value_1,
+                                s21_long_decimal *long_value_2);
+
+void __normalize_long_decimal(s21_long_decimal *long_value, int diff);
+
 #endif
