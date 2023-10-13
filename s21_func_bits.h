@@ -4,6 +4,7 @@
 #include <stdio.h>
 
 #include "s21_decimal.h"
+#include "s21_func_str.h"
 
 // ToDo - Generic
 
@@ -24,14 +25,14 @@ void __print_bit_decimal(s21_decimal *num);
 void __print_bit_long_decimal(s21_long_decimal *num);
 
 int __get_exp(int rank);
+void __set_exp(int *rank, int exp);
 
 void __copy_decimal_to_long_decimal(s21_decimal *decimal,
                                     s21_long_decimal *long_decimal);
 
-void __pre_compare_long_decimal(s21_decimal *value_1, s21_decimal *value_2,
-                                s21_long_decimal *long_value_1,
-                                s21_long_decimal *long_value_2);
-
-void __normalize_long_decimal(s21_long_decimal *long_value, int diff);
+int __mul_10_module_long_decimal(s21_long_decimal *long_decimal);
+int __sum_module_long_decimal(s21_long_decimal value_1,
+                              s21_long_decimal value_2,
+                              s21_long_decimal *result);
 
 #endif

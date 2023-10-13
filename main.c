@@ -18,8 +18,8 @@ int main() {
   char str2[len_str_max] = "-7922816251426433759354395032.5";
   char str3[len_str_max] = {0};
   char str4[len_str_max] = {0};
-  s21_str_to_dec(&num1, str1);
-  s21_str_to_dec(&num2, str2);
+  s21_str_to_decimal(&num1, str1);
+  s21_str_to_decimal(&num2, str2);
   __print_bit_decimal(&num1);
   __print_bit_decimal(&num2);
   exp1 = __get_exp(num1.bits[rank_exp_decimal]);
@@ -32,8 +32,8 @@ int main() {
   exp3 = __get_exp(num3.bits[rank_exp_long_decimal]);
   exp4 = __get_exp(num4.bits[rank_exp_long_decimal]);
   printf("exp = %d\nexp = %d\n", exp3, exp4);
-  s21_dec_to_str(&num1, str3);
-  s21_dec_to_str(&num2, str4);
+  s21_decimal_to_str(&num1, str3);
+  s21_decimal_to_str(&num2, str4);
   s21_print_str(str3);
   s21_print_str(str4);
   int less = s21_is_less(num1, num2);
