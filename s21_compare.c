@@ -121,5 +121,4 @@ void __change_exp_up(s21_long_decimal *long_value, int diff_exp) {
   }
   long_value->bits[rank_exp_long_decimal] += (diff_exp << 16);
   s21_long_decimal_to_str(long_value, str);
-  s21_print_str(str);
 }
