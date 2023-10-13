@@ -8,11 +8,11 @@
 int main() {
   s21_decimal num1 = {0};
   s21_decimal num2 = {0};
-  char str1[len_str_max] = "7.9228162514264337593543950335";
-  char str2[len_str_max] = "79228162514264337593543950335";
+  char str1[len_str_max] = "5.0";
+  char str2[len_str_max] = "5";
   s21_str_to_decimal(&num1, str1);
   s21_str_to_decimal(&num2, str2);
-  int less = s21_is_less(num1, num2);
-  printf("%d\n", less);
+  int equal = s21_is_equal(num1, num2);
+  printf("%d\n", equal);
   return 0;
 }
