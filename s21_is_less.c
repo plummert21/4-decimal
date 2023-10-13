@@ -36,7 +36,7 @@ int s21_is_less(s21_decimal value_1, s21_decimal value_2) {
       bit_value_1 = __get_bit_long_decimal(&long_value_1, i);
       bit_value_2 = __get_bit_long_decimal(&long_value_2, i);
     } while ((bit_value_1 == bit_value_2) && (i != 0));
-    result = bit_value_1 > bit_value_2 ? 0 : 1;
+    result = bit_value_1 < bit_value_2 ? 1 : 0;
     if (__get_bit_long_decimal(&long_value_1, sign_bit_long_decimal))
       result = !result;
   }
