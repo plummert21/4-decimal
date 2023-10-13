@@ -1,6 +1,6 @@
 #include "s21_func_str.h"
 
-void s21_str_to_dec(s21_decimal *num, char *str) {
+void s21_str_to_decimal(s21_decimal *num, char *str) {
   char *tmp = str;
   size_t tmp_len = strlen(str);
   int dot = 0;
@@ -22,6 +22,36 @@ void s21_str_to_dec(s21_decimal *num, char *str) {
     i = tmp_len - 1;
     if (tmp[i] % 2) {
       __set_bit_decimal(num, j);
+      tmp[i]--;
+    }
+    __div_str(tmp, tmp_len);
+    tmp_len = strlen(tmp);
+    j++;
+  }
+}
+
+void s21_str_to_long_decimal(s21_long_decimal *num, char *str) {
+  char *tmp = str;
+  size_t tmp_len = strlen(str);
+  int dot = 0;
+  char c = '.';
+  char *exp = strrchr(tmp, c);
+  if (exp) {
+    dot = strlen(exp) - 1;
+    dot = dot << 16;
+    num->bits[3] |= dot;
+  }
+  if (*tmp == '+') tmp++;
+  if (*tmp == '-') {
+    __set_bit_long_decimal(num, sign_bit_long_decimal);
+    tmp++;
+    tmp_len--;
+  }
+  int i = tmp_len - 1, j = 0;
+  while (*tmp) {
+    i = tmp_len - 1;
+    if (tmp[i] % 2) {
+      __set_bit_long_decimal(num, j);
       tmp[i]--;
     }
     __div_str(tmp, tmp_len);
@@ -58,7 +88,7 @@ void __del_zero(char *str) {
   }
 }
 
-void s21_dec_to_str(s21_decimal *num, char *str) {
+void s21_decimal_to_str(s21_decimal *num, char *str) {
   char str_pow_2[len_str_max];
   __init_str(str);
   for (int i = 0; i < 96; i++) {
@@ -70,7 +100,22 @@ void s21_dec_to_str(s21_decimal *num, char *str) {
     }
   }
   if (__get_bit_decimal(num, sign_bit_decimal)) str[0] = '-';
-  __dot_incert_to_str(num, str);
+  __dot_incert_to_str(__get_exp(num->bits[rank_exp_decimal]), str);
+}
+
+void s21_long_decimal_to_str(s21_long_decimal *num, char *str) {
+  char str_pow_2[len_str_max];
+  __init_str(str);
+  for (int i = 0; i < 192; i++) {
+    __init_str(str_pow_2);
+    str_pow_2[len_str_max - 1] = '1';
+    if (__get_bit_long_decimal(num, i)) {
+      __pow_2_to_str(str_pow_2, i);
+      __sum_strings_10(str_pow_2, str, str);
+    }
+  }
+  if (__get_bit_long_decimal(num, sign_bit_long_decimal)) str[0] = '-';
+  __dot_incert_to_str(__get_exp(num->bits[rank_exp_long_decimal]), str);
 }
 
 void s21_print_str(char *str) {
@@ -126,10 +171,7 @@ void __sum_strings_10(char *str1, char *str2, char *sum_str) {
   }
 }
 
-void __dot_incert_to_str(s21_decimal *num, char *str) {
-  int dot = 0;
-  dot = num->bits[3] << 1;
-  dot = dot >> 17;
+void __dot_incert_to_str(int dot, char *str) {
   printf("dotI: %d\n", dot);
   int i = 1;
   for (; i < len_str_max - dot - 1; i++) {
