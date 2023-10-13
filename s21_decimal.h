@@ -14,6 +14,8 @@ typedef struct {
 #define sign_bit_long_decimal 223
 #define rank_exp_decimal 3
 #define rank_exp_long_decimal 6
+#define count_bits_module_decimal 96
+#define count_bits_module_long_decimal 192
 
 // Арифметические операторы
 int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);
