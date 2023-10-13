@@ -31,8 +31,8 @@ void __copy_decimal_to_long_decimal(s21_decimal *decimal,
                                     s21_long_decimal *long_decimal);
 
 int __mul_10_module_long_decimal(s21_long_decimal *long_decimal);
-int __sum_module_long_decimal(s21_long_decimal value_1,
-                              s21_long_decimal value_2,
-                              s21_long_decimal *result);
+void __add_module_long_decimal(s21_long_decimal value_1,
+                               s21_long_decimal value_2,
+                               s21_long_decimal *result);
 
 #endif

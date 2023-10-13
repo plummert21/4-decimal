@@ -94,20 +94,16 @@ int __mul_10_module_long_decimal(s21_long_decimal *long_decimal) {
     }
     long_decimal_mul_2.bits[i] = long_decimal_mul_2.bits[i] << 1;
   }
-  __sum_module_long_decimal(long_decimal_mul_8, long_decimal_mul_2, &result);
+  __add_module_long_decimal(long_decimal_mul_8, long_decimal_mul_2, &result);
   *long_decimal = result;
 }
 
-int __sum_module_long_decimal(s21_long_decimal value_1,
-                              s21_long_decimal value_2,
-                              s21_long_decimal *result) {
-  __print_bit_long_decimal(result);
-  __print_bit_long_decimal(&value_1);
-  __print_bit_long_decimal(&value_2);
+void __add_module_long_decimal(s21_long_decimal value_1,
+                               s21_long_decimal value_2,
+                               s21_long_decimal *result) {
   int bit_over = 0;
   int bit_value_1 = 0;
   int bit_value_2 = 0;
-  int err = 0;
   for (int i = 0; i < 196; i++) {
     bit_value_1 = __get_bit_long_decimal(&value_1, i);
     bit_value_2 = __get_bit_long_decimal(&value_2, i);
@@ -116,12 +112,4 @@ int __sum_module_long_decimal(s21_long_decimal value_1,
       __set_bit_long_decimal(result, i);
     bit_over = bit_value_1 + bit_value_2 + bit_over > 1 ? 1 : 0;
   }
-  // bit_value_1 = __get_bit_long_decimal(&value_1, 95);
-  // bit_value_2 = __get_bit_long_decimal(&value_2, 95);
-  // if (bit_value_1 + bit_value_2 + bit_over == 1)
-  //   __set_bit_long_decimal(result, 95);
-  // bit_over = bit_value_1 + bit_value_2 + bit_over > 1 ? 1 : 0;
-  // err = bit_value_1 + bit_value_2 + bit_over > 1 ? 1 : 0;
-  __print_bit_long_decimal(result);
-  return err;
 }
