@@ -172,7 +172,6 @@ void __sum_strings_10(char *str1, char *str2, char *sum_str) {
 }
 
 void __dot_incert_to_str(int dot, char *str) {
-  printf("dotI: %d\n", dot);
   int i = 1;
   for (; i < len_str_max - dot - 1; i++) {
     str[i] = str[i + 1];
