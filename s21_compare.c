@@ -108,20 +108,18 @@ void __pre_compare_module_long_decimal(s21_decimal *value_1,
   __copy_decimal_to_long_decimal(value_2, long_value_2);
   int diff_exp = exp_value_1 - exp_value_2;
   if (diff_exp < 0) {
-    __change_exp_up(value_1, exp_value_1, diff_exp, long_value_1);
+    __change_exp_up(long_value_1, diff_exp);
   } else {
-    __change_exp_up(value_2, exp_value_2, diff_exp, long_value_2);
+    __change_exp_up(long_value_2, diff_exp);
   }
 }
 
-void __change_exp_up(s21_decimal *value, int exp_value, int diff_exp,
-                     s21_long_decimal *long_value) {
+void __change_exp_up(s21_long_decimal *long_value, int diff_exp) {
   char str[len_str_max] = {0};
   for (int i = 0; i < diff_exp; i++) {
     __mul_10_module_long_decimal(long_value);
-    __set_exp(&long_value->bits[rank_exp_long_decimal],
-              __get_exp(long_value->bits[rank_exp_long_decimal]) + 1);
   }
+  long_value->bits[rank_exp_long_decimal] += (diff_exp << 16);
   s21_long_decimal_to_str(long_value, str);
   s21_print_str(str);
 }
