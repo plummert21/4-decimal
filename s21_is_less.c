@@ -10,8 +10,7 @@ int s21_is_less(s21_decimal value_1, s21_decimal value_2) {
   } else if (!__get_bit(compare, compare_sign_bit)) {
     result = __get_bit_decimal(&value_1, sign_bit_decimal) ? 1 : 0;
   } else if (__get_bit(compare, compare_exp_bit)) {
-    // ToDo - знаки равны, экспоненты равны, сравниваем модули (не забыть про
-    // положительные и отрицаельные числа)
+    // знаки равны, экспоненты равны, сравниваем модули
     int i = 96;
     int bit_value_1 = 0;
     int bit_value_2 = 0;
@@ -27,8 +26,8 @@ int s21_is_less(s21_decimal value_1, s21_decimal value_2) {
     // децимал, сравниваем модули лонг_децимал.
     s21_long_decimal long_value_1 = {0};
     s21_long_decimal long_value_2 = {0};
-    __pre_compare_long_decimal(&value_1, &value_2, &long_value_1,
-                               &long_value_2);
+    __pre_compare_module_long_decimal(&value_1, &value_2, &long_value_1,
+                                      &long_value_2);
   }
   return result;
 }
