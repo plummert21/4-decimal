@@ -9,6 +9,7 @@ typedef struct {
   unsigned int bits[7];
 } s21_long_decimal;
 
+#define max_decimal "79228162514264337593543950335"
 #define len_str_max 70
 #define sign_bit_decimal 127
 #define sign_bit_long_decimal 223
