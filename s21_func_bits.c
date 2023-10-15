@@ -113,3 +113,30 @@ void __add_module_long_decimal(s21_long_decimal value_1,
     bit_over = bit_value_1 + bit_value_2 + bit_over > 1 ? 1 : 0;
   }
 }
+
+int __long_decimal_to_decimal(s21_long_decimal *long_value,
+                              s21_decimal *value) {
+  int err = 0;
+  // ToDo check value long decimal to decimal (compare with max module) -
+  // less_or_equal_long_decimal with max_value
+  err = __check_value_long_decimal_to_decimal(long_value);
+  // ToDo change value long decimal
+  //  for decimal (div 10, change exp)
+
+  // copy value long decimal to decimal
+  value->bits[rank_exp_decimal] = long_value->bits[rank_exp_long_decimal];
+  for (int i = 2; i >= 0; i--) {
+    value->bits[i] = long_value->bits[i];
+  }
+  return err;
+}
+
+// !!!!!!!!!!!!!!!!!!!      ToDo       !!!!!!!!!!!!
+int __check_value_long_decimal_to_decimal(s21_long_decimal *long_value) {
+  int err = 0;
+  s21_long_decimal long_decimal_max = {0};
+  char str_max[len_str_max] = max_decimal;
+  s21_str_to_long_decimal(&long_decimal_max, str_max);
+  __print_bit_long_decimal(&long_decimal_max);
+  return err;
+}

@@ -35,4 +35,7 @@ void __add_module_long_decimal(s21_long_decimal value_1,
                                s21_long_decimal value_2,
                                s21_long_decimal *result);
 
+int __long_decimal_to_decimal(s21_long_decimal *long_value, s21_decimal *value);
+int __check_value_long_decimal_to_decimal(s21_long_decimal *long_value);
+
 #endif
