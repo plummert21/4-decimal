@@ -114,29 +114,70 @@ void __add_module_long_decimal(s21_long_decimal value_1,
   }
 }
 
+void __change_exp_up(s21_long_decimal *long_value, int diff_exp) {
+  char str[len_str_max] = {0};
+  for (int i = 0; i < diff_exp; i++) {
+    __mul_10_module_long_decimal(long_value);
+  }
+  long_value->bits[rank_exp_long_decimal] += (diff_exp << 16);
+  s21_long_decimal_to_str(long_value, str);
+}
+
 int __long_decimal_to_decimal(s21_long_decimal *long_value,
                               s21_decimal *value) {
   int err = 0;
   // ToDo check value long decimal to decimal (compare with max module) -
   // less_or_equal_long_decimal with max_value
   err = __check_value_long_decimal_to_decimal(long_value);
-  // ToDo change value long decimal
-  //  for decimal (div 10, change exp)
-
-  // copy value long decimal to decimal
-  value->bits[rank_exp_decimal] = long_value->bits[rank_exp_long_decimal];
-  for (int i = 2; i >= 0; i--) {
-    value->bits[i] = long_value->bits[i];
+  if (!err) {
+    // ToDo change value long decimal
+    //  for decimal (div 10, change exp)
+    __change_value_long_decimal_to_decimal(long_value);
+    // copy value long decimal to decimal
+    value->bits[rank_exp_decimal] = long_value->bits[rank_exp_long_decimal];
+    for (int i = 2; i >= 0; i--) {
+      value->bits[i] = long_value->bits[i];
+    }
   }
   return err;
 }
 
-// !!!!!!!!!!!!!!!!!!!      ToDo       !!!!!!!!!!!!
+// !!!!!!!!!!!!!!!!!!!      ToDo      for min value  !!!!!!!!!!!!
 int __check_value_long_decimal_to_decimal(s21_long_decimal *long_value) {
   int err = 0;
+  int diff_exp = 0;
   s21_long_decimal long_decimal_max = {0};
   char str_max[len_str_max] = max_decimal;
+  int i = count_bits_module_long_decimal;
+  int bit_value_1 = 0;
+  int bit_value_2 = 0;
   s21_str_to_long_decimal(&long_decimal_max, str_max);
-  __print_bit_long_decimal(&long_decimal_max);
+  diff_exp = __get_exp(long_value->bits[rank_exp_long_decimal]) -
+             __get_exp(long_decimal_max.bits[rank_exp_long_decimal]);
+  __change_exp_up(&long_decimal_max, diff_exp);
+  do {
+    i--;
+    bit_value_1 = __get_bit_long_decimal(long_value, i);
+    bit_value_2 = __get_bit_long_decimal(&long_decimal_max, i);
+  } while ((bit_value_1 == bit_value_2) && (i != 0));
+  if (bit_value_1 > bit_value_2) {
+    err = 1;
+  }
   return err;
+}
+
+void __change_value_long_decimal_to_decimal(s21_long_decimal *long_value) {
+  int exp = __get_exp(long_value->bits[rank_exp_long_decimal]);
+  char str[len_str_max] = {0};
+  // отбрасываем не значимую часть числа
+  __set_exp(&long_value->bits[rank_exp_long_decimal], 1);
+  while ((long_value->bits[3]) || (long_value->bits[4]) ||
+         (long_value->bits[5])) {
+    s21_long_decimal_to_str(long_value, str);
+    str[strlen(str) - 1] = '\0';
+    for (int i = 0; i < rank_exp_long_decimal; i++) long_value->bits[i] = 0;
+    s21_str_to_long_decimal(long_value, str);
+    exp--;
+  }
+  __set_exp(&long_value->bits[rank_exp_long_decimal], exp);
 }
