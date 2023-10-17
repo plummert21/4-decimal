@@ -10,6 +10,7 @@ typedef struct {
 } s21_long_decimal;
 
 #define max_decimal "79228162514264337593543950335"
+#define min_decimal 1e-29
 #define len_str_max 70
 #define sign_bit_decimal 127
 #define sign_bit_long_decimal 223
