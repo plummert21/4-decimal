@@ -86,7 +86,7 @@ int __compare_module_long_decimal(s21_long_decimal *value_1,
                                   s21_long_decimal *value_2) {
   // return 0 - false, 1 - true
   int result = 0;
-  int i = 192;
+  int i = count_bits_module_long_decimal;
   int bit_value_1 = 0;
   int bit_value_2 = 0;
   do {
@@ -112,13 +112,4 @@ void __pre_compare_module_long_decimal(s21_decimal *value_1,
   } else {
     __change_exp_up(long_value_2, diff_exp);
   }
-}
-
-void __change_exp_up(s21_long_decimal *long_value, int diff_exp) {
-  char str[len_str_max] = {0};
-  for (int i = 0; i < diff_exp; i++) {
-    __mul_10_module_long_decimal(long_value);
-  }
-  long_value->bits[rank_exp_long_decimal] += (diff_exp << 16);
-  s21_long_decimal_to_str(long_value, str);
 }

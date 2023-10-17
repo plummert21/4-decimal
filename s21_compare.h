@@ -29,6 +29,4 @@ void __pre_compare_module_long_decimal(s21_decimal *value_1,
                                        s21_long_decimal *long_value_1,
                                        s21_long_decimal *long_value_2);
 
-void __change_exp_up(s21_long_decimal *long_value, int diff_exp);
-
 #endif
