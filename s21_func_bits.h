@@ -38,7 +38,9 @@ void __add_module_long_decimal(s21_long_decimal value_1,
 void __change_exp_up(s21_long_decimal *long_value, int diff_exp);
 
 int __long_decimal_to_decimal(s21_long_decimal *long_value, s21_decimal *value);
-int __check_value_long_decimal_to_decimal(s21_long_decimal *long_value);
+int __check_value_long_decimal_to_decimal(
+    s21_long_decimal *long_value);  // !!!!!!!!!!!!!!!!!!!      ToDo      for
+                                    // min value  !!!!!!!!!!!!
 void __change_value_long_decimal_to_decimal(s21_long_decimal *long_value);
 
 #endif

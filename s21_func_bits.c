@@ -126,12 +126,8 @@ void __change_exp_up(s21_long_decimal *long_value, int diff_exp) {
 int __long_decimal_to_decimal(s21_long_decimal *long_value,
                               s21_decimal *value) {
   int err = 0;
-  // ToDo check value long decimal to decimal (compare with max module) -
-  // less_or_equal_long_decimal with max_value
   err = __check_value_long_decimal_to_decimal(long_value);
   if (!err) {
-    // ToDo change value long decimal
-    //  for decimal (div 10, change exp)
     __change_value_long_decimal_to_decimal(long_value);
     // copy value long decimal to decimal
     value->bits[rank_exp_decimal] = long_value->bits[rank_exp_long_decimal];
