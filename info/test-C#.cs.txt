@@ -1,0 +1,158 @@
+using System;
+
+public class HelloWorld
+{
+    static void Main(string[] args)
+{
+    const int TEST_MAX = 20;
+    const int TEST_MAX2 = 13;
+    decimal[] value_1 = new decimal[TEST_MAX]  {
+        1M,
+      -1M,
+    18446744073709551617M,
+      1844674407370955161.6M,
+      429496729.5M, 
+      0M,
+      0M,
+      792281625142643375935439.50335M,
+      0.0000000018446744078004584447M,
+      -0.0000000018446744078004584447M,
+      
+       1M,
+      -79228162514264337593543950335M,
+      -0.99912312333313123123M,
+      -79228162514264337593543950330M,
+      50.555M,
+      1.11111111M,
+      -2M,
+      2M,
+      -79228162514264337593543950323M,
+      7922816251426433759354395033M,
+    
+};
+    
+
+    decimal[] value_2 = new decimal[TEST_MAX] {    
+    -2M,
+    1M,
+    18446744073709551616M,
+    184467440737095516.17M,
+    4294967295M,
+    0.51M,
+    -0.1M,
+    1.5M,
+    0.0000000000000000000000000001M,
+    -123456789.987654321M, 
+    
+    79228162514264337593543950335M,
+    -1M,
+     0.0000000018446744078004584447M,
+     100M,
+     -79228162514264337593543950322M,
+     0.9999999999999999M,
+     0M,
+     3M,
+     -0.000001M,
+     -0.000001M
+    
+        
+    };
+    
+    for (int i = 10; i < TEST_MAX; i++) {
+    // decimal res_add = Decimal.Add(value_1[i], value_2[i]);
+    // decimal res_sub = Decimal.Subtract(value_1[i], value_2[i]);
+    // decimal res_mul = Decimal.Multiply(value_1[i], value_2[i]);
+    //  decimal res_div = Decimal.Divide(value_1[i], value_2[i]);
+    // Console.WriteLine("i = {0}", i + 1);
+    // Console.WriteLine("First  num = {0}", value_1[i]);
+    // Console.WriteLine("Second num = {0}", value_2[i]);
+    // Console.WriteLine("\"{0}\"", res_add);
+    // Console.WriteLine("\"{0}\"", res_sub);
+    // Console.WriteLine("\"{0}\"", res_mul);
+    //  Console.WriteLine("\"{0}\"", res_div);
+    // Console.WriteLine();
+    }
+
+    // decimal value_3 = 1.5M;
+    // Console.WriteLine("Floor = {0}", Decimal.Floor(value_3));
+    // Console.WriteLine("Round = {0}", Decimal.Round(value_3));
+    // Console.WriteLine("Trunc = {0}", Decimal.Truncate(value_3));
+    // Console.WriteLine("Press any button");
+
+decimal[] value_3 = new decimal[TEST_MAX2] {
+1M,
+    -1M,
+      18446744073709551.617M,
+      1844674407370955161.6M,
+    429496729.5M,
+      79228162514264337593543950335M,
+      -79228162514264337593543950335M,
+      792281625142643375935439.50335M,
+      -792281625142643375935439.50335M,
+      0.0000000018446744078004584447M,
+      -0.0000000018446744078004584447M,
+      0.0000000000000000000000000001M,
+      -0.0000000000000000000000000001M,
+
+};
+
+Console.WriteLine("ROUND");
+for (int i = 0; i < TEST_MAX2; i++) {
+    Console.WriteLine("num = {0}", value_3[i]);
+   Console.WriteLine("Floor = {0}", Decimal.Floor(value_3[i]));
+    Console.WriteLine("Round = {0}", Decimal.Round(value_3[i]));
+    Console.WriteLine("Trunc = {0}\n", Decimal.Truncate(value_3[i]));
+    }
+
+decimal[] value_5 = new decimal[TEST_MAX2] {
+1M,
+    10M,
+      18446744073709551.617M,
+      1844674407370955161.6M,
+    429496729.5M,
+      79228162514264337593543950335M,
+      -79228162514264337593543950335M,
+      792281625142643375935439.50335M,
+      -792281625142643375935439.50335M,
+      0.0000000018446744078004584447M,
+      -0.0000000018446744078004584447M,
+      0.0000000000000000000000000001M,
+      -0.0000000000000000000000000001M,
+
+};
+
+decimal[] value_4 = new decimal[TEST_MAX2] {
+    1M,
+10.0M,
+18446744073709551.618M,
+-1844674407370955161.6M,
+429496729.500001M,
+79228162514264337593543950335M,
+-79228162514264337593543950335M,
+7922816251426433759354.3950335M,
+-792281625142643375935439M,
+0.0000000018446744078004584447M,
+-0.000000001M,
+0.0000000000000000000000000002M,
+-0.0000000000000000000000000001M,
+};
+
+// Console.WriteLine("COMPARE");
+// for (int i = 0; i < TEST_MAX2; i++) {
+//     decimal is_less_or_equal = Decimal.op_LessThanOrEqual(value_5[i], value_4[i]);
+//     Console.WriteLine("First num = {0}", value_5[i]);
+//     Console.WriteLine("Second num = {0}", value_4[i]);
+//     Console.WriteLine("{0}", value_5[i] >= value_4[i]);
+//     Console.WriteLine("Equal = {0}", res_sub);
+//     }
+
+    decimal value_10 = -5.89765958854M;
+    decimal value_20 = -7.01M;
+
+    Console.WriteLine("ADD");
+    Console.WriteLine("sum = {0}", value_10+value_20);
+
+    
+    Console.ReadLine();
+}
+}
