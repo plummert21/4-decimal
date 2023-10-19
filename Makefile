@@ -1,47 +1,38 @@
 NAME_PROJECT = s21_decimal
 
-# FOLDER_TEST_FILES  = $(NAME_PROJECT)_test_files
-# FILE_OUT_TESTS = tests.out
+FOLDER_TEST_FILES  = tests
 
-FLAG = -Wall -Werror -Wextra -std=c11 -pedantic
-
+# FLAG = -Wall -Werror -Wextra -std=c11 -pedantic
 GCC = gcc 
-# LIBM = -lm
-# LIBS = -lcheck $(LIBM) -lsubunit -lgcov
+LIBS = -lcheck -lsubunit -lgcov -lm
 FILES_H = *.h
 FILES_C = *.c
 FILES_O = *.o
+TEST_FILES := $(wildcard $(FOLDER_TEST_FILES)/s21_test_*.c)
 FILE_C = $(NAME_PROJECT).c
 FILE_A = $(NAME_PROJECT).a
 FILE_FORMATS_FOR_CLEAN = *.a *.o *.out *.gcda *.gcdo *.gcno *.css *.html
-# GСOVFLAG = -coverage
+GСOVFLAG = -coverage
 
-# all: $(NAME_PROJECT).a
+#all: $(NAME_PROJECT).a
+all: gcov_html
 
-all: $(NAME_PROJECT).out
+$(NAME_PROJECT).a: $(NAME_PROJECT).o build_lib
 	rm -rf *.o
 
-$(NAME_PROJECT).out: $(NAME_PROJECT).o
-	$(GCC) $(FILES_O)
-
-# $(NAME_PROJECT).a: $(NAME_PROJECT).o build_lib
-# 	rm -rf *.o
-
-# $(NAME_PROJECT).o:
-# 	$(GCC) $(FLAG) -c $(FILES_C)
-
 $(NAME_PROJECT).o:
-	$(GCC) -c $(FILES_C)
+	$(GCC) $(FLAG) -c $(FILES_C)
 
+build_lib:
+	ar rcs $(FILE_A) $(FILES_O)
 
-# build_lib:
-# 	ar rcs $(FILE_A) $(FILES_O)
+tests.out: $(NAME_PROJECT).a
+	$(foreach test_file, $(TEST_FILES), \
+		$(GCC) $(basename $(test_file)).c $(FILES_C) -L. $(FILE_A) $(GСOVFLAG) $(LIBS) -o $(basename $(test_file)).out;)
 
-# tests.out: $(NAME_PROJECT).a
-# 	$(GCC) $(FOLDER_TEST_FILES)/$(FILES_C) $(FILE_C) -L. $(FILE_A) $(GСOVFLAG) $(LIBS) -o $(FILE_OUT_TESTS)
-
-# test: tests.out
-# 	./$(FILE_OUT_TESTS)
+test: tests.out
+	$(foreach test_file, $(TEST_FILES), \
+		./$(basename $(test_file)).out;)
 
 gcov_report: test
 #   GCOVR INSTALL
@@ -57,6 +48,8 @@ gcov_html: gcov_report
 rebuild: clean all
 
 clean: 
+	$(foreach file_format, $(FILE_FORMATS_FOR_CLEAN), \
+		rm -rf $(FOLDER_TEST_FILES)/${file_format};)	
 	rm -rf ${FILE_FORMATS_FOR_CLEAN}
 	clear
 
@@ -79,4 +72,5 @@ cl-i:
 	clang-format -i $(FOLDER_TEST_FILES)/$(FILES_H)
 
 val:
-	valgrind --tool=memcheck --leak-check=yes ./$(FILE_OUT_TESTS)
+	$(foreach test_file, $(TEST_FILES), \
+		valgrind --tool=memcheck --leak-check=yes ./$(basename $(test_file)).out;)
