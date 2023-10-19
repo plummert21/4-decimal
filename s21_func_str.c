@@ -129,8 +129,8 @@ void s21_print_str(char *str) {
 
 void __init_str(char *str) {
   str[len_str_max] = '\0';
-  str[0] = 's';
-  for (int i = len_str_max - 1; i > 0; i--) str[i] = '0';
+  // str[0] = 's';
+  for (int i = len_str_max - 1; i >= 0; i--) str[i] = '0';
 }
 
 void __pow_2_to_str(char *str, int pow) {
