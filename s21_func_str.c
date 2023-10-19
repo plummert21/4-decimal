@@ -2,9 +2,10 @@
 
 void s21_str_to_decimal(s21_decimal *num, char *str) {
   char *tmp = str;
+  char c = '.';
+  if (str[strlen(str) - 1] == c) str[strlen(str) - 1] = '\0';
   size_t tmp_len = strlen(str);
   int dot = 0;
-  char c = '.';
   char *exp = strrchr(tmp, c);
   if (exp) {
     dot = strlen(exp) - 1;
@@ -32,9 +33,10 @@ void s21_str_to_decimal(s21_decimal *num, char *str) {
 
 void s21_str_to_long_decimal(s21_long_decimal *num, char *str) {
   char *tmp = str;
+  char c = '.';
+  if (str[strlen(str) - 1] == c) str[strlen(str) - 1] = '\0';
   size_t tmp_len = strlen(str);
   int dot = 0;
-  char c = '.';
   char *exp = strrchr(tmp, c);
   if (exp) {
     dot = strlen(exp) - 1;
@@ -49,7 +51,6 @@ void s21_str_to_long_decimal(s21_long_decimal *num, char *str) {
   }
   int i = tmp_len - 1, j = 0;
   while (*tmp) {
-    printf("tmp:%s\n", tmp);
     i = tmp_len - 1;
     if (tmp[i] % 2) {
       __set_bit_long_decimal(num, j);
@@ -59,7 +60,6 @@ void s21_str_to_long_decimal(s21_long_decimal *num, char *str) {
     tmp_len = strlen(tmp);
     j++;
   }
-  __print_bit_long_decimal(num);
 }
 
 void __div_str(char *str, size_t tmp_len) {
