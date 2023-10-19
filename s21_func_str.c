@@ -49,6 +49,7 @@ void s21_str_to_long_decimal(s21_long_decimal *num, char *str) {
   }
   int i = tmp_len - 1, j = 0;
   while (*tmp) {
+    printf("tmp:%s\n", tmp);
     i = tmp_len - 1;
     if (tmp[i] % 2) {
       __set_bit_long_decimal(num, j);
@@ -58,6 +59,7 @@ void s21_str_to_long_decimal(s21_long_decimal *num, char *str) {
     tmp_len = strlen(tmp);
     j++;
   }
+  __print_bit_long_decimal(num);
 }
 
 void __div_str(char *str, size_t tmp_len) {
