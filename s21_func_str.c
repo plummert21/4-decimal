@@ -9,7 +9,7 @@ void s21_str_to_decimal(s21_decimal *num, char *str) {
   if (exp) {
     dot = strlen(exp) - 1;
     dot = dot << 16;
-    num->bits[3] |= dot;
+    num->bits[rank_exp_decimal] |= dot;
   }
   if (*tmp == '+') tmp++;
   if (*tmp == '-') {
@@ -32,23 +32,32 @@ void s21_str_to_decimal(s21_decimal *num, char *str) {
 
 void s21_str_to_long_decimal(s21_long_decimal *num, char *str) {
   char *tmp = str;
+  printf("-----------------\n");
+  __print_bit_long_decimal(num);
+  s21_print_str(str);
   size_t tmp_len = strlen(str);
   int dot = 0;
   char c = '.';
   char *exp = strrchr(tmp, c);
+
   if (exp) {
     dot = strlen(exp) - 1;
     dot = dot << 16;
-    num->bits[3] |= dot;
+    num->bits[rank_exp_long_decimal] |= dot;
   }
+
   if (*tmp == '+') tmp++;
   if (*tmp == '-') {
     __set_bit_long_decimal(num, sign_bit_long_decimal);
     tmp++;
     tmp_len--;
   }
+
   int i = tmp_len - 1, j = 0;
+  printf("#####################################################\n");
   while (*tmp) {
+    __print_bit_long_decimal(num);
+    s21_print_str(str);
     i = tmp_len - 1;
     if (tmp[i] % 2) {
       __set_bit_long_decimal(num, j);
@@ -58,6 +67,7 @@ void s21_str_to_long_decimal(s21_long_decimal *num, char *str) {
     tmp_len = strlen(tmp);
     j++;
   }
+  printf("-----------------\n");
 }
 
 void __div_str(char *str, size_t tmp_len) {
@@ -91,7 +101,7 @@ void __del_zero(char *str) {
 void s21_decimal_to_str(s21_decimal *num, char *str) {
   char str_pow_2[len_str_max];
   __init_str(str);
-  for (int i = 0; i < 96; i++) {
+  for (int i = 0; i < count_bits_module_decimal; i++) {
     __init_str(str_pow_2);
     str_pow_2[len_str_max - 1] = '1';
     if (__get_bit_decimal(num, i)) {
@@ -106,7 +116,7 @@ void s21_decimal_to_str(s21_decimal *num, char *str) {
 void s21_long_decimal_to_str(s21_long_decimal *num, char *str) {
   char str_pow_2[len_str_max];
   __init_str(str);
-  for (int i = 0; i < 192; i++) {
+  for (int i = 0; i < count_bits_module_long_decimal; i++) {
     __init_str(str_pow_2);
     str_pow_2[len_str_max - 1] = '1';
     if (__get_bit_long_decimal(num, i)) {
