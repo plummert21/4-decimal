@@ -210,23 +210,10 @@ void __change_value_long_decimal_to_decimal(s21_long_decimal *long_value) {
   __set_exp(&long_value->bits[rank_exp_long_decimal], 1);
   while ((long_value->bits[3]) || (long_value->bits[4]) ||
          (long_value->bits[5])) {
-    s21_long_decimal_to_str(long_value, str);
-    s21_print_str(str);
     str[strlen(str) - 1] = '\0';
-    s21_print_str(str);
-    s21_print_str(str);
     for (int i = 0; i < rank_exp_long_decimal; i++) long_value->bits[i] = 0;
-    s21_print_str(str);
-    s21_print_str(str);
     s21_str_to_long_decimal(long_value, str);
-
-    s21_print_str(str);
     exp--;
   }
-
   __set_exp(&long_value->bits[rank_exp_long_decimal], exp);
-  s21_print_str(str);
-  s21_long_decimal test = {0};
-  s21_long_decimal_to_str(&test, str);
-  __print_bit_long_decimal(&test);
 }
