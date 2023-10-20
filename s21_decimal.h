@@ -1,6 +1,10 @@
 #ifndef S21_DECIMAL_H
 #define S21_DECIMAL_H
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 typedef struct {
   unsigned int bits[4];
 } s21_decimal;
@@ -18,6 +22,10 @@ typedef struct {
 #define rank_exp_long_decimal 6
 #define count_bits_module_decimal 96
 #define count_bits_module_long_decimal 192
+
+#include "s21_compare.h"
+#include "s21_func_bits.h"
+#include "s21_func_str.h"
 
 // Арифметические операторы
 int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);

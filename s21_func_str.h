@@ -1,12 +1,7 @@
 #ifndef S21_FUNC_STR_H
 #define S21_FUNC_STR_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #include "s21_decimal.h"
-#include "s21_func_bits.h"
 
 void s21_str_to_decimal(s21_decimal *num, char *str);
 void s21_decimal_to_str(s21_decimal *num, char *str);

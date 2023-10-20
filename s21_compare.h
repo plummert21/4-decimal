@@ -2,7 +2,6 @@
 #define S21_COMPARE
 
 #include "s21_decimal.h"
-#include "s21_func_bits.h"
 
 #define compare_sign_bit 2
 #define compare_exp_bit 1
