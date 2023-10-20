@@ -80,7 +80,7 @@ Suite *test_insert(void) {
   tcase_add_test(tc, test_add_1);  // +
   tcase_add_test(tc, test_add_2);  // +
   // максимальное децимал с дробным числом, где значимая часть равна 0
-  tcase_add_test(tc, test_add_3);  // -
+  tcase_add_test(tc, test_add_3);  // +
   // максимальное децимал с дробным числом, где значимая часть не равна 0
   tcase_add_test(tc, test_add_4);  // +
 
