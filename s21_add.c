@@ -16,7 +16,6 @@ int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   } else {
     // ToDo разность если знаки различные
   }
-  // !!!!!!!!!!!!!!!!!!!!!!   ToDo   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   err = __long_decimal_to_decimal(&long_result, result);
   return err;
 }
