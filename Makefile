@@ -15,7 +15,7 @@ FILE_FORMATS_FOR_CLEAN = *.a *.o *.out *.gcda *.gcdo *.gcno *.css *.html
 GСOVFLAG = -coverage
 
 #all: $(NAME_PROJECT).a
-all: gcov_html
+all: gcov_report
 # all:
 # 	gcc *.c
 # 	./a.out
