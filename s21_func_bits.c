@@ -114,6 +114,33 @@ void __add_module_long_decimal(s21_long_decimal value_1,
   }
 }
 
+void __sub_module_long_decimal(s21_long_decimal value_1,
+                               s21_long_decimal value_2,
+                               s21_long_decimal *result) {
+  int bit_value_1 = 0;
+  int bit_value_2 = 0;
+  __print_bit_long_decimal(&value_1);
+  __print_bit_long_decimal(&value_2);
+  for (int i = 0; i < count_bits_module_long_decimal; i++) {
+    bit_value_1 = __get_bit_long_decimal(&value_1, i);
+    bit_value_2 = __get_bit_long_decimal(&value_2, i);
+    if ((bit_value_1 - bit_value_2) < 0) {
+      int j = i;
+      while (!(__get_bit_long_decimal(&value_1, j))) {
+        __set_bit_long_decimal(&value_1, j);
+        j++;
+      }
+      __reset_bit_long_decimal(&value_1, j);
+      __reset_bit_long_decimal(&value_2, i);
+    }
+    bit_value_1 = __get_bit_long_decimal(&value_1, i);
+    bit_value_2 = __get_bit_long_decimal(&value_2, i);
+    if ((bit_value_1 - bit_value_2) == 1) __set_bit_long_decimal(result, i);
+    if ((bit_value_1 - bit_value_2) == 0) __reset_bit_long_decimal(result, i);
+  }
+  __print_bit_long_decimal(result);
+}
+
 void __change_exp_up(s21_long_decimal *long_value, int diff_exp) {
   char str[len_str_max] = {0};
   for (int i = 0; i < diff_exp; i++) {
@@ -181,7 +208,6 @@ int __check_value_long_decimal_to_decimal(s21_long_decimal long_value) {
 void __change_value_long_decimal_to_decimal(s21_long_decimal *long_value) {
   int exp = __get_exp(long_value->bits[rank_exp_long_decimal]);
   char str[len_str_max] = {0};
-
   // отбрасываем не значимую часть числа
   s21_long_decimal_to_str(long_value, str);
   __set_exp(&long_value->bits[rank_exp_long_decimal], 1);
@@ -192,5 +218,10 @@ void __change_value_long_decimal_to_decimal(s21_long_decimal *long_value) {
     s21_str_to_long_decimal(long_value, str);
     exp--;
   }
-  __set_exp(&long_value->bits[rank_exp_long_decimal], exp);
+  if (long_value->bits[0] || long_value->bits[1] || long_value->bits[2]) {
+    __set_exp(&long_value->bits[rank_exp_long_decimal], exp);
+  } else {
+    __set_exp(&long_value->bits[rank_exp_long_decimal], 0);
+    __reset_bit_long_decimal(long_value, sign_bit_long_decimal);
+  }
 }

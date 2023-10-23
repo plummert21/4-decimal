@@ -32,6 +32,10 @@ void __add_module_long_decimal(s21_long_decimal value_1,
                                s21_long_decimal value_2,
                                s21_long_decimal *result);
 
+void __sub_module_long_decimal(s21_long_decimal value_1,
+                               s21_long_decimal value_2,
+                               s21_long_decimal *result);
+
 void __change_exp_up(s21_long_decimal *long_value, int diff_exp);
 void __change_exp_down(s21_long_decimal *long_value);
 
