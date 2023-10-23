@@ -15,11 +15,11 @@ FILE_FORMATS_FOR_CLEAN = *.a *.o *.out *.gcda *.gcdo *.gcno *.css *.html
 GСOVFLAG = -coverage
 
 #all: $(NAME_PROJECT).a
-# all: gcov_report
-all:
-	gcc *.c
-	./a.out
-	rm a.out
+all: gcov_report
+# all:
+# 	gcc *.c
+# 	./a.out
+# 	rm a.out
 
 $(NAME_PROJECT).a: $(NAME_PROJECT).o build_lib
 	rm -rf *.o
