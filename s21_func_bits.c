@@ -119,8 +119,6 @@ void __sub_module_long_decimal(s21_long_decimal value_1,
                                s21_long_decimal *result) {
   int bit_value_1 = 0;
   int bit_value_2 = 0;
-  __print_bit_long_decimal(&value_1);
-  __print_bit_long_decimal(&value_2);
   for (int i = 0; i < count_bits_module_long_decimal; i++) {
     bit_value_1 = __get_bit_long_decimal(&value_1, i);
     bit_value_2 = __get_bit_long_decimal(&value_2, i);
@@ -138,7 +136,6 @@ void __sub_module_long_decimal(s21_long_decimal value_1,
     if ((bit_value_1 - bit_value_2) == 1) __set_bit_long_decimal(result, i);
     if ((bit_value_1 - bit_value_2) == 0) __reset_bit_long_decimal(result, i);
   }
-  __print_bit_long_decimal(result);
 }
 
 void __change_exp_up(s21_long_decimal *long_value, int diff_exp) {
